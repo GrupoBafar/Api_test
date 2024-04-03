@@ -2,7 +2,6 @@ const axios = require('axios');
 const moment = require('moment');
 const generarDatosAleatorios = require('./transacciones')
 
-
 let transaccionesxSegundo = 0 ; 
 // const peticiones = generarDatosAleatorios(50);
 // const datosPersona = [{
