@@ -66,13 +66,13 @@
         function test(){
             if(busy) {
                 console.log('Busy...');
-                const btn = document.querySelector('#btnTest');
-                const spinner = document.querySelector('#loading');
-                btn.disabled = true;
-                spinner.classList.remove('d-none')
                 return   
             }
             busy = true;
+            const btn = document.querySelector('#btnTest');
+            const spinner = document.querySelector('#loading');
+            btn.disabled = true;
+            spinner.classList.remove('d-none');
 
             const segundos = document.getElementById('segundos').value;
             var formData = new FormData();
