@@ -36,7 +36,15 @@
                                 <label for="input2" class="form-label">Peticiones por segundo</label>
                                 <input type="number" class="form-control" id="segundos" placeholder="Segundos">
                             </div>
-                            <button type="button"  class="btn btn-primary" onclick="test();">Realizar Test</button>
+                            <div class="d-flex align-items-center">
+                                <button id="btnTest" type="button" class="btn btn-primary" onclick="test();">
+                                    Probar
+                                </button>
+                                <div id="loading" class="spinner-border text-success items-center mx-2 d-none" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                           
                         </form>
                     </div>
                 </div>
@@ -58,6 +66,10 @@
         function test(){
             if(busy) {
                 console.log('Busy...');
+                const btn = document.querySelector('#btnTest');
+                const spinner = document.querySelector('#loading');
+                btn.disabled = true;
+                spinner.classList.remove('d-none')
                 return   
             }
             busy = true;
@@ -71,7 +83,7 @@
                 body:formData
             };
 
-            fetch(`http://localhost:4322/upload/${segundos}`, requestOptions)
+            fetch(`/upload/${segundos}`, requestOptions)
             .then((response) => response.json())
             .then((result) => createBody(result))
             .catch((error) => console.error(error));
@@ -94,6 +106,10 @@
                 tr.appendChild(td2);
                 document.getElementById('tbody').appendChild(tr);
             });
+            const btn = document.querySelector('#btnTest');
+            const spinner = document.querySelector('#loading');
+            btn.disabled = false;
+            spinner.classList.add('d-none')
             busy = false;
         }
 
