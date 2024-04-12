@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const xlsx = require('xlsx');
 const estres = require('./app.js');
+const estres2 = require('./app2.js');
 const path = require('path')
 
 const app = express();
@@ -35,6 +36,25 @@ app.post('/upload/:seg', upload.single('archivo'), (req, res) => {
     }catch(err){
         return res.status(400).send('No se ha seleccionado un archivo de excel.');
     }
+    
+    // Envía una respuesta al cliente
+   /// res.send('Archivo subido y procesado correctamente.');
+});
+app.get('/test2/:seg', (req, res) => {
+  
+
+    // res.send(JSON.stringify([{msj:'Success', trans:'Hola'}]));
+    // return
+
+        estres2(req.params.seg)
+        .then(data => {
+            console.log();
+            res.send(data);
+        })
+        .catch(err => {
+            return res.status(400).send('Error.');
+            console.log(data);
+        });
     
     // Envía una respuesta al cliente
    /// res.send('Archivo subido y procesado correctamente.');
